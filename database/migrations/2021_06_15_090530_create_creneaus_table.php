@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCreneausTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -16,6 +17,7 @@ class CreateCreneausTable extends Migration
         Schema::create('creneaus', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
         });
     }
 

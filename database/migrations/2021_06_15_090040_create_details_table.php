@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateDetailsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -16,6 +17,7 @@ class CreateDetailsTable extends Migration
         Schema::create('details', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
         });
     }
 
