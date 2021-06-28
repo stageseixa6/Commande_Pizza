@@ -27,8 +27,9 @@ class ApiController extends Controller
 
     //supprime une commande par id
     public function SupprimerDetail($id){
-        $detail = DB::connection('main')->delete('delete from commandes where id=?;', [$id]);// Detail::query('SELECT * FROM detail WHERE id = ? ', [$id]);//todo
+        $detail = Commandes::find($id);;
         if($detail){
+            $detail->delete();
             return response()->json(["status" => "success"]);
         }else{
             return response()->json(["status" => "error"]);
@@ -36,7 +37,7 @@ class ApiController extends Controller
     }
     //affiche une commande par id
     public function AfficherDetail($id){
-        $detail =DB::select('SELECT FROM commandes WHERE id=?;', [$id]);//todo
+        $detail = Commandes::find($id);
         if ($detail){
             return response()->json($detail);
         }
@@ -68,8 +69,9 @@ class ApiController extends Controller
     }
     //supprimer un horaire par id
     public function SupprimerHoraire($id){
-        $horaire = DB::connection('main')->delete('delete from creneaus where id=?;', [$id]);// Detail::query('SELECT * FROM detail WHERE id = ? ', [$id]);//todo
+        $horaire = Creneau::find($id);
         if($horaire){
+            $horaire->delete();
             return response()->json(["status" => "success"]);
         }else{
             return response()->json(["status" => "error"]);
