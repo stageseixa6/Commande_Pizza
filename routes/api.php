@@ -23,9 +23,9 @@ Route::get('/commandes', ['App\Http\Controllers\ApiController', 'AfficherCommand
 Route::delete('/commandes', ['App\Http\Controllers\ApiController', 'SupprimerCommandes']);
 
 //Routes pour le détail d'une commande
-Route::get('/commandes/{$id}', ['App\Http\Controllers\ApiController', 'AfficherDetail']);
+Route::get('/commandes/{id}', ['App\Http\Controllers\ApiController', 'AfficherDetail']);
 
-Route::delete('/commandes/{$id}', ['App\Http\Controllers\ApiController', 'SupprimerDetail']);
+Route::delete('/commandes/{id}', ['App\Http\Controllers\ApiController', 'SupprimerDetail']);
 
 //Route pour les creneaux
 Route::get('/creneau', ['App\Http\Controllers\ApiController', 'AfficherCreneau']);
