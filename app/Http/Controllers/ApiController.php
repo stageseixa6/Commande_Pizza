@@ -8,6 +8,7 @@ use App\Models\Detail;
 use http\Env\Response;
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
@@ -18,15 +19,16 @@ class ApiController extends Controller
     //supprime toutes les commandes
     public function SupprimerCommandes(){
         $commandes = Commandes::all();
-        $commandes->delete();//todo
+        foreach ($commandes as $commande) {
+            $commande->delete();
+        }
         return response()->json(["status"=>"success"]);
     }
 
     //supprime une commande par id
     public function SupprimerDetail($id){
-        $detail = Detail::find($id);//todo
+        $detail = DB::connection('main')->delete('delete from commandes where id=?;', [$id]);// Detail::query('SELECT * FROM detail WHERE id = ? ', [$id]);//todo
         if($detail){
-            $detail->delete();
             return response()->json(["status" => "success"]);
         }else{
             return response()->json(["status" => "error"]);
@@ -34,9 +36,9 @@ class ApiController extends Controller
     }
     //affiche une commande par id
     public function AfficherDetail($id){
-        $detail = Detail::where($id);//todo
+        $detail =DB::select('SELECT FROM commandes WHERE id=?;', [$id]);//todo
         if ($detail){
-            return response()->json(Detail::all($id));
+            return response()->json($detail);
         }
         else{
             return Response()->json(["status" => "error"]);
@@ -64,15 +66,23 @@ class ApiController extends Controller
     public function ModifierCreneau($id){
         //todo
     }
-    //supprimer creneau
-    public function SupprimerCreneau($id){
-        $creneau = Creneau::find($id);//todo
-        if($creneau){
-            $creneau->delete();
+    //supprimer un horaire par id
+    public function SupprimerHoraire($id){
+        $horaire = DB::connection('main')->delete('delete from creneau where id=?;', [$id]);// Detail::query('SELECT * FROM detail WHERE id = ? ', [$id]);//todo
+        if($horaire){
             return response()->json(["status" => "success"]);
         }else{
             return response()->json(["status" => "error"]);
         }
+    }
+
+    //supprimer un creneau complet
+    public function SupprimerCreneau(){
+        $creneau = Creneau::all();
+        foreach ($creneau as $creneau) {
+            $creneau->delete();
+        }
+        return response()->json(["status"=>"success"]);
     }
 
 }
