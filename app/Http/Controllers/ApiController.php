@@ -68,7 +68,7 @@ class ApiController extends Controller
     }
     //supprimer un horaire par id
     public function SupprimerHoraire($id){
-        $horaire = DB::connection('main')->delete('delete from creneau where id=?;', [$id]);// Detail::query('SELECT * FROM detail WHERE id = ? ', [$id]);//todo
+        $horaire = DB::connection('main')->delete('delete from creneaus where id=?;', [$id]);// Detail::query('SELECT * FROM detail WHERE id = ? ', [$id]);//todo
         if($horaire){
             return response()->json(["status" => "success"]);
         }else{
