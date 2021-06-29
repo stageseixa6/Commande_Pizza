@@ -36,4 +36,6 @@ Route::post('/creneau', ['App\Http\Controllers\ApiController', 'CreerCreneau']);
 
 Route::delete('/creneau', ['App\Http\Controllers\ApiController', 'SupprimerCreneau']);
 
+Route::put('/creneau/{id}', ['App\Http\Controllers\ApiController', 'ModifierCreneau']);
+
 

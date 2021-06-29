@@ -64,8 +64,18 @@ class ApiController extends Controller
         }
     }
     //modifier un creneau
-    public function ModifierCreneau($id){
-        //todo
+    public function ModifierCreneau(Request $request, $id){
+       $creneau = Creneau::find($id);
+        $horaire = $request->input('horaire');
+
+       if($horaire && $creneau){
+           $creneau->horaire = $horaire;
+           $creneau->save();
+          return response()->json(["status" => "success"]);
+       }
+       else{
+           return response()->json(["status" => "error"]);
+       }
     }
     //supprimer un horaire par id
     public function SupprimerHoraire($id){
