@@ -18,6 +18,7 @@ class CreateCreneausTable extends Migration
             $table->id();
             $table->timestamps();
 
+
         });
     }
 
